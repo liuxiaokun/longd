@@ -8,3 +8,13 @@
 *.class
 .idea/
 gradle
+=======
+# Built application files
+*.apk
+
+# Generated files
+bin/
+gen/
+/*/build/
+proguard/
+*.log
