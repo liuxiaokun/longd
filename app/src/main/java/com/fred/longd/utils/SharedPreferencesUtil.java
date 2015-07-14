@@ -100,7 +100,7 @@ public class SharedPreferencesUtil {
                 Class clz = SharedPreferences.Editor.class;
                 return clz.getMethod("apply");
             } catch (NoSuchMethodException e) {
-                //
+                LogUtil.i(e.getMessage());
             }
 
             return null;
@@ -114,7 +114,7 @@ public class SharedPreferencesUtil {
                     return;
                 }
             } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
-                //
+                LogUtil.i(e.getMessage());
             }
             editor.commit();
         }
