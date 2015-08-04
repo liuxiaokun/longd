@@ -1,8 +1,9 @@
 package com.fred.longd.task;
 
+import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Button;
-import android.widget.ProgressBar;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -14,17 +15,20 @@ import java.net.URISyntaxException;
  */
 public class DownloadTask extends AsyncTask<String, Integer, String> {
 
-    private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     private Button download;
 
-    public DownloadTask(ProgressBar progressBar, Button download) {
-        this.progressBar = progressBar;
+    public DownloadTask(ProgressDialog progressDialog, Button download) {
+        this.progressDialog = progressDialog;
         this.download = download;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog.show();
+        download.setBackgroundColor(Color.parseColor("#FF000000"));
+        download.setClickable(false);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
-        progressBar.setProgress(values[0]);
+        progressDialog.setProgress(values[0]);
     }
 
     @Override
@@ -62,6 +66,9 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
         if ("SUCCESS".equals(s)) {
             download.setText("COMPLETED!");
         }
+        download.setClickable(true);
+        download.setBackgroundColor(Color.parseColor("#F5F5DC"));
+        progressDialog.dismiss();
     }
 
 

@@ -1,10 +1,10 @@
 package com.fred.longd.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 
 import com.fred.longd.R;
 import com.fred.longd.task.DownloadTask;
@@ -13,7 +13,7 @@ import com.fred.longd.task.DownloadTask;
 public class SplashActivity extends Activity implements View.OnClickListener {
 
     private Button download;
-    private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,11 @@ public class SplashActivity extends Activity implements View.OnClickListener {
 
         download = (Button) findViewById(R.id.download);
         download.setOnClickListener(this);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setTitle("Downloading...");
     }
 
 
@@ -33,7 +37,7 @@ public class SplashActivity extends Activity implements View.OnClickListener {
 
             case R.id.download:
 
-                DownloadTask downloadTask = new DownloadTask(progressBar, download);
+                DownloadTask downloadTask = new DownloadTask(progressDialog, download);
                 downloadTask.execute("www.baidu.com");
                 break;
             case R.id.progress_bar:
