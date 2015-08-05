@@ -1,50 +1,47 @@
 package com.fred.longd.activities;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.os.Handler;
+import android.os.Message;
 
 import com.fred.longd.R;
-import com.fred.longd.task.DownloadTask;
 
 
-public class SplashActivity extends Activity implements View.OnClickListener {
+public class SplashActivity extends Activity {
 
-    private Button download;
-    private ProgressDialog progressDialog;
+    private Handler handler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+
+            switch (msg.what) {
+                case 1:
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    SplashActivity.this.finish();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        download = (Button) findViewById(R.id.download);
-        download.setOnClickListener(this);
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setTitle("Downloading...");
     }
 
-
     @Override
-    public void onClick(View v) {
+    protected void onResume() {
+        super.onResume();
 
-        switch (v.getId()) {
-
-            case R.id.download:
-
-                DownloadTask downloadTask = new DownloadTask(progressDialog, download);
-                downloadTask.execute("www.baidu.com");
-                break;
-            case R.id.progress_bar:
-                break;
-
-            default:
-                break;
-        }
+        handler.sendEmptyMessageDelayed(1, 5000);
     }
 }
