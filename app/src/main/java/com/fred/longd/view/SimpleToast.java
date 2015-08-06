@@ -1,6 +1,7 @@
 package com.fred.longd.view;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,7 @@ public class SimpleToast {
         initSetButtonMsg(msg);
         mToast = new Toast(context);
         mToast.setView(mView);
+        mToast.setGravity(Gravity.CENTER, 0, 0);
         mToast.setDuration(Toast.LENGTH_LONG);
         mToast.show();
     }
@@ -51,11 +53,11 @@ public class SimpleToast {
         mToast.setView(mView);
         mToast.setDuration(Toast.LENGTH_SHORT);
         mToast.show();
-    }
+    }*/
 
     public static void error(Context context, String msg) {
         mInflater = LayoutInflater.from(context);
-        mView = mInflater.inflate(R.layout.toast_error, null);
+        mView = mInflater.inflate(R.layout.toast, null);
         initSetButtonMsg(msg);
         mToast = new Toast(context);
         mToast.setView(mView);
@@ -63,7 +65,7 @@ public class SimpleToast {
         mToast.show();
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    /*
     public static void error(Context context, String msg,
                              String icon) {
         mInflater = LayoutInflater.from(context);

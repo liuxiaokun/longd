@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 
 import com.fred.longd.R;
 import com.fred.longd.task.DownloadTask;
@@ -15,6 +16,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private Button download;
     private ProgressDialog progressDialog;
+    private DatePicker datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         download = (Button) findViewById(R.id.download);
         download.setOnClickListener(this);
+        datePicker = (DatePicker) findViewById(R.id.date_picker);
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
@@ -52,7 +55,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         // disable the back button.
-        SimpleToast.ok(this,"退出");
+        SimpleToast.ok(this, "退出");
         // super.onBackPressed();
     }
 }
