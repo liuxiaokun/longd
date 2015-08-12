@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.fred.longd.R;
 import com.fred.longd.task.DownloadTask;
+import com.fred.longd.utils.ScreenUtil;
 import com.fred.longd.view.SimpleToast;
 
 
@@ -17,6 +19,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button download;
     private ProgressDialog progressDialog;
     private DatePicker datePicker;
+    private Button other;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
+        progressDialog.setIcon(R.drawable.logo);
+        progressDialog.setMessage("提示信息");
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setTitle("Downloading...");
+        progressDialog.setTitle("正在升级");
+
+        other = (Button) findViewById(R.id.other);
+        other.setOnClickListener(this);
     }
 
 
@@ -44,7 +52,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 DownloadTask downloadTask = new DownloadTask(progressDialog, download);
                 downloadTask.execute("www.baidu.com");
                 break;
-            case R.id.progress_bar:
+            case R.id.other:
+
+                String str = ScreenUtil.getScreenHeight(this) + " :" + ScreenUtil.getScreenWidth(this);
+                Toast.makeText(this, str, Toast.LENGTH_LONG).show();
                 break;
 
             default:
@@ -56,6 +67,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onBackPressed() {
         // disable the back button.
         SimpleToast.ok(this, "退出");
-        // super.onBackPressed();
+        super.onBackPressed();
     }
 }

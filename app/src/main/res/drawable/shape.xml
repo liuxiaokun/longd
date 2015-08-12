@@ -6,4 +6,9 @@
         android:width="1dip"
         android:color="#0057AE"/>
     <solid android:color="#0066CC"/>
+
+    <gradient
+        android:endColor="#6289ff"
+        android:startColor="#0057AE"
+        android:type="linear"/>
 </shape>
