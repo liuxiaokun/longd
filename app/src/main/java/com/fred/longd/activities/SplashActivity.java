@@ -43,6 +43,6 @@ public class SplashActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        handler.sendEmptyMessageDelayed(1, 5000);
+        handler.sendEmptyMessageDelayed(1, 1000);
     }
 }

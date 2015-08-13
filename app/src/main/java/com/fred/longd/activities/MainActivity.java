@@ -66,7 +66,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         // disable the back button.
-        SimpleToast.ok(this, "退出");
-        super.onBackPressed();
+        SimpleToast.shortShow(this, "退出退出退出退出");
+       // super.onBackPressed();
     }
 }

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
        android:shape="rectangle">
-    <corners android:radius="6dp"/>
-    <stroke
-        android:width="1dip"
-        android:color="#0057AE"/>
-    <solid android:color="#0066CC"/>
 
+    <!--圆角-->
+    <corners android:radius="8dp"/>
+    <!--描边-->
+    <stroke
+        android:width="2dip"
+        android:color="#cc5d5d5d"/>
+    <!--实心-->
+    <solid android:color="#cc2b2828"/>
+
+    <!-- 颜色渐变-->
     <gradient
-        android:endColor="#6289ff"
-        android:startColor="#0057AE"
+        android:endColor="#cc2b2828"
+        android:startColor="#cc2b2828"
         android:type="linear"/>
 </shape>
