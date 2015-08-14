@@ -5,8 +5,14 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Button;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.fred.longd.utils.LogUtil;
+
+import java.io.BufferedInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * @author Fred Liu(liuxiaokun0410@gmail.com)
@@ -35,21 +41,32 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
     protected String doInBackground(String... params) {
 
         try {
-            URI uri = new URI(params[0]);
-        } catch (URISyntaxException e) {
+            URL url = new URL(params[0]);
+            URLConnection connection = url.openConnection();
+            connection.connect();
+            //这将是有用的，这样你可以显示一个典型的0-100%的进度条
+            int fileLength = connection.getContentLength();
+
+            // 下载文件
+            InputStream input = new BufferedInputStream(url.openStream());
+            OutputStream output = new FileOutputStream("mnt/sdcard/aaa.apk");
+
+            byte data[] = new byte[1024];
+            long total = 0;
+            int count;
+
+            while ((count = input.read(data)) != -1) {
+                total += count;
+                publishProgress((int) (total * 100 / fileLength));
+                output.write(data, 0, count);
+            }
+            output.flush();
+            output.close();
+            input.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        int i = 0;
-
-        while (i <= 100) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            publishProgress(i++);
-        }
         return "SUCCESS";
     }
 

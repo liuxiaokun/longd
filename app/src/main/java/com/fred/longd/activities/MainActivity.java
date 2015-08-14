@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.download:
 
                 DownloadTask downloadTask = new DownloadTask(progressDialog, download);
-                downloadTask.execute("www.baidu.com");
+                downloadTask.execute("http://gdown.baidu.com/data/wisegame/3f2c972459995277/jifengshichang.apk");
                 break;
             case R.id.other:
 
@@ -67,6 +67,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onBackPressed() {
         // disable the back button.
         SimpleToast.shortShow(this, "退出退出退出退出");
-       // super.onBackPressed();
+        super.onBackPressed();
     }
 }
