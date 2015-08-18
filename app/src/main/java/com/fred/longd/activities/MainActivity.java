@@ -2,6 +2,7 @@ package com.fred.longd.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +57,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                 String str = ScreenUtil.getScreenHeight(this) + " :" + ScreenUtil.getScreenWidth(this);
                 Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.setClass(this, OtherActivity.class);
+                startActivity(intent);
                 break;
 
             default:
