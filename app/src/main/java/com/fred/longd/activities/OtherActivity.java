@@ -2,6 +2,7 @@ package com.fred.longd.activities;
 
 import android.app.Activity;
 import android.app.Service;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
@@ -43,6 +44,8 @@ public class OtherActivity extends Activity implements View.OnClickListener {
                 vibrator = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
                 vibrator.vibrate(500);
 
+                MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.press);
+                mediaPlayer.start();
                 new CustomizedProgressDialog(this, "loading...").show();
                 break;
         }

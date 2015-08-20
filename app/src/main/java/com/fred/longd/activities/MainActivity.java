@@ -27,6 +27,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        addShortcut("fred");
+
         download = (Button) findViewById(R.id.download);
         download.setOnClickListener(this);
         datePicker = (DatePicker) findViewById(R.id.date_picker);
@@ -73,4 +76,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
         SimpleToast.shortShow(this, "退出退出退出退出");
         super.onBackPressed();
     }
+
+
+    private void addShortcut(String name) {
+
+        String ACTION_ADD_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
+        Intent addShortcutIntent = new Intent(ACTION_ADD_SHORTCUT);
+
+        // 不允许重复创建
+        addShortcutIntent.putExtra("duplicate", false);// 经测试不是根据快捷方式的名字判断重复的
+        // 应该是根据快链的Intent来判断是否重复的,即Intent.EXTRA_SHORTCUT_INTENT字段的value
+        // 但是名称不同时，虽然有的手机系统会显示Toast提示重复，仍然会建立快链
+        // 屏幕上没有空间时会提示
+        // 注意：重复创建的行为MIUI和三星手机上不太一样，小米上似乎不能重复创建快捷方式
+
+        // 名字
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+
+        // 图标
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                Intent.ShortcutIconResource.fromContext(MainActivity.this,
+                        R.drawable.ic_launcher));
+
+        // 设置关联程序
+        Intent launcher = new Intent(this, SplashActivity.class);
+        launcher.setAction(Intent.ACTION_MAIN);
+        launcher.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        addShortcutIntent
+                .putExtra(Intent.EXTRA_SHORTCUT_INTENT, launcher);
+
+        sendBroadcast(addShortcutIntent);
+    }
+
 }
