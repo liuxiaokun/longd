@@ -1,22 +1,19 @@
 package com.fred.longd.activities;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.app.Service;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 
 import com.fred.longd.R;
-import com.fred.longd.view.SimpleToast;
+import com.fred.longd.view.CustomizedProgressDialog;
 
 /**
  * @author Fred Liu(liuxiaokun0410@gmail.com)
- * @since 2015/8/12
  * @version v1.0
+ * @since 2015/8/12
  */
 public class OtherActivity extends Activity implements View.OnClickListener {
 
@@ -35,16 +32,6 @@ public class OtherActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onClick(View v) {
 
 
@@ -55,7 +42,8 @@ public class OtherActivity extends Activity implements View.OnClickListener {
 
                 vibrator = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
                 vibrator.vibrate(500);
-                SimpleToast.shortShow(this, "vibrator 500 ms!");
+
+                new CustomizedProgressDialog(this, "loading...").show();
                 break;
         }
     }

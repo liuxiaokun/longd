@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <!--oneshot是否只展示一遍，设置为false会不停的循环播放动画-->
+    <item
+        android:drawable="@drawable/meituan_loading_2"
+        android:duration="50"/>
+    <item
+        android:drawable="@drawable/meituan_loading_1"
+        android:duration="50"/>
+</animation-list>   
