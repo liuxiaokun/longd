@@ -1,9 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context=".SplashActivity">
+              android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
@@ -14,15 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/download"/>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:max="100"
-        android:progress="30"/>
 
     <DatePicker
         android:id="@+id/date_picker"
@@ -36,9 +25,15 @@
 
     <Button
         android:id="@+id/other"
-        android:text="@string/other"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        android:text="@string/other"/>
+
+    <Button
+        android:id="@+id/date_picker_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/date_picker_dialog"/>
 
 
 </LinearLayout>

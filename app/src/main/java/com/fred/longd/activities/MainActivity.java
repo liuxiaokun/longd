@@ -1,6 +1,7 @@
 package com.fred.longd.activities;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +15,15 @@ import com.fred.longd.task.DownloadTask;
 import com.fred.longd.utils.ScreenUtil;
 import com.fred.longd.view.SimpleToast;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private Button download;
     private ProgressDialog progressDialog;
-    private DatePicker datePicker;
+    private Button datePickerDialog;
     private Button other;
 
     @Override
@@ -32,7 +36,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         download = (Button) findViewById(R.id.download);
         download.setOnClickListener(this);
-        datePicker = (DatePicker) findViewById(R.id.date_picker);
+        datePickerDialog = (Button) findViewById(R.id.date_picker_dialog);
+        datePickerDialog.setOnClickListener(this);
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
@@ -65,6 +71,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
 
+            case R.id.date_picker_dialog:
+
+                Calendar calendar = Calendar.getInstance(Locale.CHINA);
+
+                int year = calendar.get(Calendar.YEAR); //获取Calendar对象中的年
+                int month = calendar.get(Calendar.MONTH);//获取Calendar对象中的月
+                int day = calendar.get(Calendar.DAY_OF_MONTH);//获取这个月的第几天
+
+                DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                    }
+                }, year, month, day);
+                dpd.show();
             default:
                 break;
         }
@@ -108,5 +130,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         sendBroadcast(addShortcutIntent);
     }
+
 
 }
