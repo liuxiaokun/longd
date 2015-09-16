@@ -20,6 +20,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile files('src/main/libs/org.eclipse.paho.android.service-1.0.2.jar')
+    compile files('src/main/libs/org.eclipse.paho.client.mqttv3-1.0.2.jar')
 }
