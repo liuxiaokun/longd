@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.fred.longd.R;
 import com.fred.longd.task.DownloadTask;
 import com.fred.longd.utils.ScreenUtil;
+import com.fred.longd.utils.UpgradeUtil;
 import com.fred.longd.view.SimpleToast;
 
 import java.util.Calendar;
@@ -88,6 +90,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     }
                 }, year, month, day);
                 dpd.show();
+
+
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/jifengshichang.apk";
+                System.out.println(path);
+                if (UpgradeUtil.install(path, getApplicationContext())){
+                    System.out.println("success install");
+                } else {
+                    System.out.println("success fail");
+                }
             default:
                 break;
         }
