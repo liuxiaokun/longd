@@ -3,6 +3,8 @@ package com.fred.longd.mqtt;
 import android.content.Context;
 import android.util.Log;
 
+import com.fred.longd.utils.AppUtil;
+
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
@@ -17,8 +19,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
  */
 public class MqttClient {
 
-    public static final String SERVER_URI = "tcp://localhost:61616";
-    private static final String clientId = "1234567890";
+    public static final String SERVER_URI = "tcp://114.80.83.168:1993";
+    private static String clientId = "55cee81b467f80df";
 
     private MqttAndroidClient mqttAndroidClient;
     private MqttConnectOptions mqttConnectOptions;
@@ -47,9 +49,7 @@ public class MqttClient {
         mqttAndroidClient = new MqttAndroidClient(context, SERVER_URI, clientId);
 
         mqttConnectOptions = new MqttConnectOptions();
-        mqttConnectOptions.setCleanSession(true);
-        mqttConnectOptions.setConnectionTimeout(30);
-        mqttConnectOptions.setKeepAliveInterval(30);
+        mqttConnectOptions.setCleanSession(false);
 
         mqttAndroidClient.setCallback(new MyMqttCallback());
     }

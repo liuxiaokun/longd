@@ -3,6 +3,7 @@ package com.fred.longd.utils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 
 public class AppUtil {
 
@@ -37,5 +38,11 @@ public class AppUtil {
             LogUtil.i(e.getMessage());
         }
         return null;
+    }
+
+    public static String getClientId(Context context) {
+
+        return Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
     }
 }

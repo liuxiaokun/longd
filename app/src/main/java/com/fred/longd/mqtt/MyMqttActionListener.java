@@ -1,5 +1,7 @@
 package com.fred.longd.mqtt;
 
+import android.util.Log;
+
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 
@@ -12,11 +14,11 @@ public class MyMqttActionListener implements IMqttActionListener {
 
     @Override
     public void onSuccess(IMqttToken iMqttToken) {
-
+        Log.i("fred1", "MyMqttActionListener - onSuccess");
     }
 
     @Override
     public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-
+        Log.i("fred1", "MyMqttActionListener - onFailure");
     }
 }

@@ -15,13 +15,13 @@ public class MyMqttCallback implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable throwable) {
-
+        Log.i("fred1", "MyMqttCallback-connectionLost");
     }
 
     @Override
     public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
 
-        Log.i("messageArrived", "topic:" + topic + ", mqttMessage:" + mqttMessage);
+        Log.i("fred1", "messageArrived --------topic:" + topic + ", mqttMessage:" + mqttMessage);
     }
 
     @Override
