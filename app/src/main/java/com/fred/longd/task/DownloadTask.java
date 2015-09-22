@@ -1,11 +1,12 @@
 package com.fred.longd.task;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Button;
 
-import com.fred.longd.utils.LogUtil;
+import com.fred.longd.R;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
@@ -23,16 +24,25 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 
     private ProgressDialog progressDialog;
     private Button download;
+    private Context mContext;
 
-    public DownloadTask(ProgressDialog progressDialog, Button download) {
-        this.progressDialog = progressDialog;
+    public DownloadTask(Context context, Button download) {
+        this.mContext = context;
         this.download = download;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog = new ProgressDialog(mContext);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIcon(R.drawable.logo);
+        progressDialog.setMessage("提示信息");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setTitle("正在升级");
         progressDialog.show();
+
         download.setBackgroundColor(Color.parseColor("#FF000000"));
         download.setClickable(false);
     }
@@ -44,10 +54,8 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
             URL url = new URL(params[0]);
             URLConnection connection = url.openConnection();
             connection.connect();
-            //这将是有用的，这样你可以显示一个典型的0-100%的进度条
             int fileLength = connection.getContentLength();
 
-            // 下载文件
             InputStream input = new BufferedInputStream(url.openStream());
             OutputStream output = new FileOutputStream("mnt/sdcard/aaa.apk");
 
@@ -57,6 +65,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 
             while ((count = input.read(data)) != -1) {
                 total += count;
+                // callback to onProgressUpdate();
                 publishProgress((int) (total * 100 / fileLength));
                 output.write(data, 0, count);
             }

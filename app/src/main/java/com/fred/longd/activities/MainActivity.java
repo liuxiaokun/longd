@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,6 +26,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ProgressDialog progressDialog;
     private Button datePickerDialog;
     private Button other;
+    private Button popupWindow;
+    private Button install;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +35,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
 
-        addShortcut("fred");
+//        addShortcut("fred");
 
         download = (Button) findViewById(R.id.download);
         download.setOnClickListener(this);
         datePickerDialog = (Button) findViewById(R.id.date_picker_dialog);
         datePickerDialog.setOnClickListener(this);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setCancelable(false);
-        progressDialog.setIcon(R.drawable.logo);
-        progressDialog.setMessage("提示信息");
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setTitle("正在升级");
 
         other = (Button) findViewById(R.id.other);
         other.setOnClickListener(this);
+
+
+        popupWindow = (Button) findViewById(R.id.popup_window);
+        popupWindow.setOnClickListener(this);
+
+        install = (Button) findViewById(R.id.install);
+        install.setOnClickListener(this);
     }
 
 
@@ -61,7 +62,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.download:
 
-                DownloadTask downloadTask = new DownloadTask(progressDialog, download);
+                DownloadTask downloadTask = new DownloadTask(this, download);
                 downloadTask.execute("http://gdown.baidu.com/data/wisegame/3f2c972459995277/jifengshichang.apk");
                 break;
             case R.id.other:
@@ -77,9 +78,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                 Calendar calendar = Calendar.getInstance(Locale.CHINA);
 
-                int year = calendar.get(Calendar.YEAR); //获取Calendar对象中的年
-                int month = calendar.get(Calendar.MONTH);//获取Calendar对象中的月
-                int day = calendar.get(Calendar.DAY_OF_MONTH);//获取这个月的第几天
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
@@ -91,14 +92,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }, year, month, day);
                 dpd.show();
 
+                break;
+            case R.id.popup_window:
 
-                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/jifengshichang.apk";
-                System.out.println(path);
-                if (UpgradeUtil.install(path, getApplicationContext())){
-                    System.out.println("success install");
+                break;
+
+            case R.id.install:
+                String path = "mnt/sdcard/aaa.apk";
+
+                if (UpgradeUtil.install(path, getApplicationContext())) {
+                    SimpleToast.shortShow(this, "success install");
                 } else {
-                    System.out.println("success fail");
+                    SimpleToast.shortShow(this, "success fail");
                 }
+                break;
             default:
                 break;
         }

@@ -3,37 +3,36 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <Button
         android:id="@+id/download"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/download"/>
 
-    <DatePicker
-        android:id="@+id/date_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/date_show"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/other"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="@string/other"/>
+        android:id="@+id/install"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/install"/>
 
     <Button
         android:id="@+id/date_picker_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/date_picker_dialog"/>
+
+    <Button
+        android:id="@+id/popup_window"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/popup_window"/>
+
+     <Button
+        android:id="@+id/other"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/other"/>
 
 
 </LinearLayout>

@@ -6,5 +6,7 @@
     <string name="download">download</string>
     <string name="other">other</string>
     <string name="date_picker_dialog">DatePickerDialog</string>
+    <string name="install">Install</string>
+    <string name="popup_window">popup_window</string>
     <string name="vibrator">vibrator</string>
 </resources>
