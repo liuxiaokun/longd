@@ -21,17 +21,6 @@ public class MyApplication extends Application {
         super.onCreate();
         boolean connected = NetworkUtil.isConnected(this);
         Log.i("fred1", "network:" + connected);
-
-
-//        MqttClient.getInstance(this).connect();
-
-
-//        try {
-//            doConnect();
-//        } catch (MqttException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     public void doConnect() throws MqttException {
